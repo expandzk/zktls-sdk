@@ -1,0 +1,30 @@
+{
+    "provider": "http",
+    "parameters": {
+        "method": "GET",
+        "url": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd",
+        "responseMatches": [
+            {
+                "type": "regex",
+                "value": "\\{\"ethereum\":\\{\"usd\":(?<price>[\\d\\.]+)\\}\\}"
+            }
+        ],
+        "responseRedactions": []
+    },
+    "timestamp": 1710000000,
+    "owner": "test-user",
+    "context": {
+        "name": "http",
+        "description": [
+            "Example to fetch the current price of ETH in USD",
+            "from the CoinGecko API",
+            "The current price will be extracted & stored in",
+            "context.extractedParams.price"
+        ],
+        "secretParams": {
+            "headers": {
+                "accept": "application/json, text/plain, */*"
+            }
+        }
+    }
+}
