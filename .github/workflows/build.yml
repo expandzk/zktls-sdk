@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["*"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          components: rustfmt, clippy, llvm-tools-preview
+
+      - name: Install cargo-llvm-cov
+        uses: taiki-e/install-action@cargo-llvm-cov
+
+      - name: Check Format
+        run: cargo fmt --all -- --check
+
+      - name: Run Clippy
+        run: cargo clippy --all-targets --all-features -j 4 -- -D warnings
+
+      - name: Build
+        run: RUSTFLAGS="-D warnings" cargo build --all-features
+
+      - name: Run Test
+        run: cargo llvm-cov test --all-features --no-report
+
+      - name: Check Dirty Files
+        run: |
+          if ! git diff --quiet; then
+              echo "Some generated files are not included in repo:"
+              git diff --name-only
+              exit 1
+          fi
