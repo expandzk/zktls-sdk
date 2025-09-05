@@ -9,15 +9,17 @@ version = "0.1.0"
 edition = "2024"
 
 [workspace.dependencies]
+anyhow = { version = "1.0.80" }
 tokio = { version = "1.37", features = ["full"] }
 reqwest = { version = "0.11.24", features = ["json"] }
 serde = { version = "1.0.197", features = ["derive"] }
 serde_json = { version = "1.0.114" }
 async-trait = { version = "0.1.77" }
 thiserror = { version = "1.0.57" }
-anyhow = { version = "1.0.80" }
+log = { version = "0.4.26" }
 protos = { git = "ssh://git@github.com/expandzk/zktls-verifier.git", rev = "6f6d167" }
 url = { version = "2.5.0" }
 tokio-tungstenite = { version = "0.26.2", features = ["native-tls"] }
 futures-util = { version = "0.3.31" } 
 typed-builder = { version = "0.20.0" }
+md5 = { version = "0.7.0" }
