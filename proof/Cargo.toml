@@ -11,3 +11,5 @@ serde_json = { workspace = true }
 thiserror = { workspace = true }
 anyhow = { workspace = true }
 typed-builder = { workspace = true }
+md5 = { workspace = true }
+log = { workspace = true }

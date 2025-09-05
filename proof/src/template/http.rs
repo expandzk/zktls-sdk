@@ -31,7 +31,9 @@ impl HttpTemplate {
 pub struct HttpParameters {
     pub method: String,
     pub url: String,
+    #[serde(alias = "responseMatches")]
     pub response_matches: Vec<ResponseMatch>,
+    #[serde(alias = "responseRedactions")]
     pub response_redactions: Vec<String>,
 }
 
@@ -45,6 +47,7 @@ pub struct ResponseMatch {
 pub struct HttpContext {
     pub name: String,
     pub description: Vec<String>,
+    #[serde(alias = "secretParams")]
     pub secret_params: SecretParams,
 }
 

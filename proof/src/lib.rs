@@ -1,6 +1,7 @@
 mod client;
 mod common;
-mod template;
+pub mod template;
 
 pub use client::*;
 pub use common::*;
+pub use template::*;
